@@ -1,5 +1,6 @@
 package com.jonathan.compression;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,10 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CompressorTest {
     private String inputPath = "kafka_2.12-0.10.2.0";
-    private String outputPath = "result.zip";
+    private String outputPath = "kafka_2.12-0.10.2.0.zip";
 
     @BeforeEach
-    void beforeEach() {
+    @AfterEach
+    void cleanup() {
         try {
             Files.list(Paths.get(""))
                     .filter(it -> it.toFile().getName().startsWith(outputPath))

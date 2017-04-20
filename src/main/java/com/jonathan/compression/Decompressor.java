@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
@@ -15,7 +16,7 @@ public class Decompressor {
 
         if (!path.toFile().exists()) path.toFile().mkdir();
 
-        try (FileInputStream fis = new FileInputStream(inputFile);
+        try (FileInputStream fis = new FileInputStream(Paths.get(this.getClass().getClassLoader().getResource(inputFile).toURI()).toFile());
              ZipInputStream zis = new ZipInputStream(fis)) {
             ZipEntry entry = zis.getNextEntry();
 
@@ -41,7 +42,7 @@ public class Decompressor {
                 zis.closeEntry();
                 entry = zis.getNextEntry();
             }
-        } catch (IOException e) {
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
     }
