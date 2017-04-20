@@ -1,6 +1,8 @@
 Agoda Test - Compression
 ===
 
+GitHub: https://github.com/jonathanhandoyo/interview-compression
+
 Although it may cost me to forgo a few things:
 - writing in Scala
 - potentially interchangeable compression algorithm
